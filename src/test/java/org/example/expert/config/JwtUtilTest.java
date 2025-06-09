@@ -2,6 +2,7 @@ package org.example.expert.config;
 
 import io.jsonwebtoken.Claims;
 import org.example.expert.domain.user.enums.UserRole;
+import org.example.expert.global.security.JwtUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

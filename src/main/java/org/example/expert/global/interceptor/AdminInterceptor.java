@@ -1,10 +1,10 @@
-package org.example.expert.config.interceptor;
+package org.example.expert.global.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.expert.config.JwtUtil;
+import org.example.expert.global.security.JwtUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.time.Instant;

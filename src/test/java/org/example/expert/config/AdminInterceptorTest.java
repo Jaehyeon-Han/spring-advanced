@@ -1,6 +1,7 @@
 package org.example.expert.config;
 
-import org.example.expert.config.interceptor.AdminInterceptor;
+import org.example.expert.global.security.JwtUtil;
+import org.example.expert.global.interceptor.AdminInterceptor;
 import org.example.expert.domain.auth.exception.NotAuthorizedException;
 import org.example.expert.domain.user.enums.UserRole;
 import org.junit.jupiter.api.Test;
