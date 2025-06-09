@@ -23,6 +23,8 @@ public class JwtUtil {
     private static final String BEARER_PREFIX = "Bearer ";
     private static final long TOKEN_TIME = 60 * 60 * 1000L; // 60분
 
+    private static final String USER_ROLE = "userRole";
+
     @Value("${jwt.secret.key}")
     private String secretKey;
     private Key key;
@@ -61,5 +63,15 @@ public class JwtUtil {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    /**
+     *
+     * @param token: Bearer 이후 토큰값만 포함하는 문자열
+     * @return 해당 사용자의 Role
+     */
+    public UserRole getUserRole(String token) {
+        Claims claims = extractClaims(token);
+        return UserRole.valueOf(claims.get(USER_ROLE, String.class));
     }
 }
