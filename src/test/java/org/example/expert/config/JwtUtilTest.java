@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 public class JwtUtilTest {
 
@@ -15,9 +17,17 @@ public class JwtUtilTest {
 
     @Test
     void extractRoleTest() {
-        String token = jwtUtil.createToken(1L, "user@email.com", UserRole.ADMIN);
-        String realToken = jwtUtil.substringToken(token);
-        Claims claims = jwtUtil.extractClaims(realToken);
+        String bearerToken = jwtUtil.createToken(1L, "user@email.com", UserRole.ADMIN);
+        String token = jwtUtil.substringToken(bearerToken);
+        Claims claims = jwtUtil.extractClaims(token);
         System.out.println(claims.get("userRole", UserRole.class));
+    }
+
+    @Test
+    void extractUserIdTest() {
+        String bearerToken = jwtUtil.createToken(1L, "user@email.com", UserRole.ADMIN);
+        String token = jwtUtil.substringToken(bearerToken);
+        long userId = jwtUtil.getUserId(token);
+        assertThat(userId).isEqualTo(1L);
     }
 }
