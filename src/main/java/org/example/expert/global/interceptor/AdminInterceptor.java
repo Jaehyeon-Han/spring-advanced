@@ -5,12 +5,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.expert.global.security.JwtUtil;
+import org.example.expert.global.util.DateTimeFormattingUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -32,16 +28,8 @@ public class AdminInterceptor implements HandlerInterceptor {
         */
 
         log.info("Requested URI: {}", request.getRequestURI());
-        log.info("Requested time: {}", getCurrentTimeInFormat());
+        log.info("Requested time: {}", DateTimeFormattingUtil.formattedNow(TIME_FORMAT));
         return true;
     }
 
-    private String getCurrentTimeInFormat() {
-        long requestTimeMillis = System.currentTimeMillis();
-        LocalDateTime requestTime = Instant.ofEpochMilli(requestTimeMillis)
-            .atZone(ZoneId.systemDefault())
-            .toLocalDateTime();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT);
-        return requestTime.format(formatter);
-    }
 }
