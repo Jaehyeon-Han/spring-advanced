@@ -26,7 +26,6 @@ import java.lang.reflect.Method;
 @RequiredArgsConstructor
 public class AdminLoggingAspect {
 
-    
     private final ObjectMapper objectMapper;
     private final JwtUtil jwtUtil;
 
@@ -92,7 +91,7 @@ public class AdminLoggingAspect {
             }
         }
 
-        if(!hasBody) {
+        if (!hasBody) {
             log.info("Request body: null");
         }
     }
